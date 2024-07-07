@@ -26,8 +26,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).contactViewModel
+        viewModel = (activity as MainActivity).contactsViewModel
         setupRecyclerView()
+        setupAddButton()
+    }
+
+    private fun setupAddButton() {
+        binding.floatingActionButton.setOnClickListener {
+            val direction = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+            binding.root.findNavController().navigate(direction)
+        }
     }
 
     private fun setupRecyclerView() {
